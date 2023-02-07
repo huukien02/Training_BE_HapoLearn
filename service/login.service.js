@@ -5,21 +5,25 @@ const jwt = require('jsonwebtoken')
 const login = async (req, res, next) => {
 
     try {
-        const checkUser = await userModel.find({ username: req.body.username, password: req.body.password })
+        const checkUser = await userModel.findOne({ username: req.body.username, password: req.body.password })
 
-        if (checkUser.length > 0) {
+        if (checkUser != null) {
+            const idUser = checkUser._id
+            const username = checkUser.username
+            const email = checkUser.email
 
             let infor = {
-                id: checkUser[0]._id,
-                username: checkUser[0].username,
-                email: checkUser[0].email
+                id: idUser,
+                username: username,
+                email: email
             }
-
-            let token = jwt.sign(infor, 'suyt');
+            const accessToken = jwt.sign(infor, 'suyt', {
+                expiresIn: '30d',
+            });
 
             return res.status(200).json({
                 message: 'Login thành công',
-                token: token
+                accessToken: accessToken
             })
         }
 
@@ -32,3 +36,7 @@ const login = async (req, res, next) => {
     }
 }
 module.exports = { login }
+
+
+
+
