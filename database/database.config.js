@@ -15,3 +15,4 @@ const connectDB = mongoose.connect(url, {
     });
 
 module.exports = connectDB
+
