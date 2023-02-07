@@ -21,3 +21,4 @@ const updateProfile = (req, res, next) => {
 }
 
 module.exports = { updateProfile }
+

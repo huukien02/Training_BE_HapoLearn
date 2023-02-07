@@ -5,8 +5,10 @@ const auth = require('../middleware/auth')
 
 
 /* Update User. */
-router.post('/', auth, profileService.updateProfile);
+router.put('/', auth, profileService.updateProfile);
 
 module.exports = router;
+
+
 
 
