@@ -14,3 +14,4 @@ const getCourses = async (req, res, next) => {
 
 
 module.exports = { getCourses }
+
